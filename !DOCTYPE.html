@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Mark Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mark Sheet for 100 Students</h1>
+    <div class="table-container">
+        <table id="markSheetTable">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Math</th>
+                    <th>Science</th>
+                    <th>English</th>
+                    <th>History</th>
+                    <th>Geography</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to generate random marks
+        function getRandomMarks() {
+            return {
+                math: Math.floor(Math.random() * 101),
+                science: Math.floor(Math.random() * 101),
+                english: Math.floor(Math.random() * 101),
+                history: Math.floor(Math.random() * 101),
+                geography: Math.floor(Math.random() * 101),
+            };
+        }
+
+        // Function to generate table rows
+        function generateTableRows(numStudents) {
+            const tableBody = document.querySelector('#markSheetTable tbody');
+            for (let i = 1; i <= numStudents; i++) {
+                const marks = getRandomMarks();
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${i}</td>
+                    <td>Student ${i}</td>
+                    <td>${marks.math}</td>
+                    <td>${marks.science}</td>
+                    <td>${marks.english}</td>
+                    <td>${marks.history}</td>
+                    <td>${marks.geography}</td>
+                `;
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Generate 100 student rows
+        generateTableRows(100);
+    </script>
+</body>
+</html>
